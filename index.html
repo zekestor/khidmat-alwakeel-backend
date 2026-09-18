@@ -1,0 +1,8 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>خدمة الوكيل</title><link rel="stylesheet" href="/static/style.css"></head><body>
+<header><div class="brand">خدمة الوكيل</div><div class="tag">إنجاز ملفات الوكلاء بسهولة</div></header>
+<main><section class="hero"><h1>اختار الخدمة</h1><p>ارفع ملفاتك، النظام يعالجها، وتشوف الصفحة الأولى فقط قبل تأكيد الدفع.</p></section>
+{% with msgs=get_flashed_messages() %}{% if msgs %}<div class="alert">{{msgs[0]}}</div>{% endif %}{% endwith %}
+<div class="grid">
+<form class="card" action="/create-order" method="post" enctype="multipart/form-data"><input type="hidden" name="service" value="alphabetical"><h2>🔤 ترتيب حسب الأبجدية</h2><p>ملف PDF واحد → ترتيب الأسماء أبجدياً + تسلسل من 1 إلى النهاية.</p><label>ملف PDF</label><input required type="file" name="pdf1" accept="application/pdf"><button>ابدأ الخدمة — 5,000 د.ع</button></form>
+<form class="card" action="/create-order" method="post" enctype="multipart/form-data"><input type="hidden" name="service" value="compare"><h2>🔄 المتغيرات والمقارنة</h2><p>ملف قديم + ملف جديد → استخراج المتغيرات والمقارنة.</p><label>الملف القديم</label><input required type="file" name="pdf1" accept="application/pdf"><label>الملف الجديد</label><input required type="file" name="pdf2" accept="application/pdf"><button>ابدأ الخدمة — 5,000 د.ع</button></form>
+</div><section class="pay"><b>الدفع:</b> 5,000 د.ع — رقم التحويل: <strong>{{account}}</strong><br><small>التأكيد النهائي يتم من الإدارة بعد التحقق من التحويل.</small></section></main></body></html>

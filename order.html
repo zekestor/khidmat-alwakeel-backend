@@ -1,0 +1,8 @@
+<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>طلب {{order.id}}</title><link rel="stylesheet" href="/static/style.css"></head><body><main>
+<a href="/">← الرئيسية</a><div class="card"><h1>طلبك جاهز للمعاينة</h1><p>رقم الطلب: <b>{{order.id}}</b></p><p>الحالة: <b>{{order.status}}</b></p>
+<h3>المعاينة — الصفحة الأولى فقط</h3><iframe class="pdf" src="/preview/{{order.id}}/1"></iframe>
+{% if order.service=="compare" %}<iframe class="pdf" src="/preview/{{order.id}}/2"></iframe>{% endif %}
+<div class="pay"><b>الدفع:</b> 5,000 د.ع<br>رقم التحويل: <strong>{{account}}</strong></div>
+<form method="post" action="/order/{{order.id}}/payment-request"><button>أرسلت التحويل — أرسل طلب التحقق</button></form>
+{% if order.status=="paid" %}<hr><h3>تم تأكيد الدفع</h3><a class="button" href="/download/{{order.id}}/1">تحميل الملف الكامل</a>{% if order.service=="compare" %}<a class="button" href="/download/{{order.id}}/2">تحميل الملف الثاني</a>{% endif %}{% endif %}
+{% with msgs=get_flashed_messages() %}{% if msgs %}<div class="alert">{{msgs[0]}}</div>{% endif %}{% endwith %}</div></main></body></html>
